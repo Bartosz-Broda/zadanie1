@@ -1,6 +1,7 @@
 package com.example.zadanie1.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zadanie1.R;
 import com.example.zadanie1.model.GitRepo;
+import com.example.zadanie1.view.DetailsActivity;
 
 import java.util.List;
 
@@ -27,6 +29,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public RecyclerAdapter(List<GitRepo> mGitRepos, Context mContext) {
         this.mGitRepos = mGitRepos;
         this.mContext = mContext;
+    }
+
+    public void setmGitRepos(List<GitRepo> mGitRepos) {
+        this.mGitRepos = mGitRepos;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -45,14 +52,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         ((ViewHolder)holder).name.setText(mGitRepos.get(position).getName());
 
         //Sets description of the repository
-        ((ViewHolder)holder).shortDescription.setText(mGitRepos.get(position).getShortDescription());
+        ((ViewHolder)holder).shortDescription.setText(mGitRepos.get(position).getDescription());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on something");
 
-                Toast.makeText(mContext, mGitRepos.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(mContext, DetailsActivity.class);
+                mContext.startActivity(myIntent);
+
+                Toast.makeText(mContext, mGitRepos.get(position).getUrl(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -60,7 +70,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mGitRepos.size();
+        if (mGitRepos == null){
+            return 0;
+        }else {
+            return mGitRepos.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

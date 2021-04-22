@@ -25,5 +25,5 @@ public class MainActivityViewModel extends ViewModel {
     public LiveData<List<GitRepo>> getAllegroGitRepos() {
         return allegroGitRepos;
     }
-
+    public void makeApiCall(){mRepo.makeApiCall();}
 }

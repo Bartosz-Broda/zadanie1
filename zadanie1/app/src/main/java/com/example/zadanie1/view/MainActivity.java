@@ -3,6 +3,7 @@ package com.example.zadanie1.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private MainActivityViewModel mMainActivityViewModel;
+    private List<GitRepo> gitRepoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
         mMainActivityViewModel.getAllegroGitRepos().observe(this, new Observer<List<GitRepo>>() {
             @Override
             public void onChanged(List<GitRepo> gitRepos) {
-                adapter.notifyDataSetChanged();
+                gitRepoList = gitRepos;
+                adapter.setmGitRepos(gitRepoList);
             }
         });
 
+        mMainActivityViewModel.makeApiCall();
         initRecyclerView();
 
     }
@@ -51,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: initiated");
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new RecyclerAdapter(mMainActivityViewModel.getAllegroGitRepos().getValue(), this);
+        adapter = new RecyclerAdapter(gitRepoList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
     }
+
+
+
 }
