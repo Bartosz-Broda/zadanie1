@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     //vars
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mShortDescription = new ArrayList<>();
-
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private MainActivityViewModel mMainActivityViewModel;
@@ -43,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<GitRepo> gitRepos) {
                 gitRepoList = gitRepos;
+                Log.d(TAG, "onChanged: " + gitRepoList);
                 adapter.setmGitRepos(gitRepoList);
             }
         });

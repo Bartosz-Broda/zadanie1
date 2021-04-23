@@ -49,10 +49,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         Log.d(TAG, "onBindViewHolder: called.");
 
         //Sets name of repository
-        ((ViewHolder)holder).name.setText(mGitRepos.get(position).getName());
+        holder.name.setText(mGitRepos.get(position).getName());
 
         //Sets description of the repository
-        ((ViewHolder)holder).shortDescription.setText(mGitRepos.get(position).getDescription());
+        holder.shortDescription.setText(mGitRepos.get(position).getDescription());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +60,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Log.d(TAG, "onClick: clicked on something");
 
                 Intent myIntent = new Intent(mContext, DetailsActivity.class);
+                myIntent.putExtra("key", position);
                 mContext.startActivity(myIntent);
 
-                Toast.makeText(mContext, mGitRepos.get(position).getUrl(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, String.valueOf(position), Toast.LENGTH_SHORT).show();
             }
         });
 

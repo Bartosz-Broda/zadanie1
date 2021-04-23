@@ -29,8 +29,8 @@ public class GitRepoRepository {
     }
 
     public void makeApiCall() {
-        APIService apiService = RetrofitInstance.getRetroClient().create(APIService.class);
-        Call<List<GitRepo>> call = apiService.getGitRepos();
+        APIService apiService = RetrofitInstance.getRetroClient(1).create(APIService.class);
+        Call<List<GitRepo>> call = apiService.getGitRepos("repos");
         call.enqueue(new Callback<List<GitRepo>>() {
             @Override
             public void onResponse(Call<List<GitRepo>> call, Response<List<GitRepo>> response) {
