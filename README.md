@@ -5,4 +5,6 @@ W kolejnych iteracjach można dodać do aplikacji wyświetlanie listy współaut
 
 Pod tym linkiem znajduje się plik .apk, który można zainstalować na urządzeniu z androidem: https://github.com/Bartosz-Broda/zadanie1/releases/download/v0.11-alpha/app-debug.apk
 
+Projekt można pobrać na przykład w formie paczki .zip, rozpakować i otworzyć w Android Studio.
+
 Zalecany poziom API to co najmniej 26 (Android 8.0 Oreo).
