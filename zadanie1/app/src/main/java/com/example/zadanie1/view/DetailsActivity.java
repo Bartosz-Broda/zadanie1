@@ -14,7 +14,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.time.Instant;
@@ -26,7 +29,7 @@ import java.util.Locale;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private static final String TAG = "KURWA" ;
+    private static final String TAG = "DetailsTAG" ;
     private TextView repoName;
     private TextView repoDesc;
     private TextView repoLang;
@@ -43,6 +46,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     private DetailsActivityViewModel mViewModel;
     private List<RepoDetailsModel> mDetailsList;
+
+    private Animation fadeOutAnim;
+    private ProgressBar loadProgress;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -61,6 +67,8 @@ public class DetailsActivity extends AppCompatActivity {
         mViewModel.init();
         mViewModel.getRepoDetails().observe(this, repoDetailsModels -> {
             if (repoDetailsModels != null){
+                //Turning off loading progress bar
+                loadProgress.startAnimation(fadeOutAnim);
                 mDetailsList = repoDetailsModels;
 
                 //Loading Allegro Avatar
@@ -96,6 +104,7 @@ public class DetailsActivity extends AppCompatActivity {
         mViewModel.makeApiCall("repos");
         initUI();
 
+
     }
 
     private void initUI(){
@@ -111,5 +120,8 @@ public class DetailsActivity extends AppCompatActivity {
         text1 = findViewById(R.id.textView);
         text2 = findViewById(R.id.textView2);
         defBranch = findViewById(R.id.default_branch);
+        fadeOutAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+        loadProgress = findViewById(R.id.load_proressbar);
+        loadProgress.setVisibility(View.VISIBLE);
     }
 }
