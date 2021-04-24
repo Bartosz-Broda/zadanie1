@@ -29,7 +29,7 @@ public class RepoDetailsRepository {
     }
 
     public void makeApiCall(String repoName) {
-        APIService apiService = RetrofitInstance.getRetroClient(1).create(APIService.class);
+        APIService apiService = RetrofitInstance.getRetroClient().create(APIService.class);
         Call<List<RepoDetailsModel>> call = apiService.getRepoDetails(repoName);
         call.enqueue(new Callback<List<RepoDetailsModel>>() {
             @Override

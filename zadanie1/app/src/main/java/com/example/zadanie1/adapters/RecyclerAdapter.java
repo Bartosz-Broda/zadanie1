@@ -62,8 +62,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Intent myIntent = new Intent(mContext, DetailsActivity.class);
                 myIntent.putExtra("key", position);
                 mContext.startActivity(myIntent);
-
-                Toast.makeText(mContext, String.valueOf(position), Toast.LENGTH_SHORT).show();
             }
         });
 

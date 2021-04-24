@@ -6,18 +6,24 @@ public class RepoDetailsModel {
     private String description;
     private String language;
     private String created_at;
-    private String updated_at;
+    private String pushed_at;
+    private String default_branch;
+    private Owner owner;
     private int watchers;
     private int size;
+    private int forks;
 
-    public RepoDetailsModel(String name, String description, String language, String created_at, String updated_at, int watchers, int size) {
+    public RepoDetailsModel(String name, String description, String language, String created_at, String pushed_at, String default_branch, Owner owner, int watchers, int size, int forks) {
         this.name = name;
         this.description = description;
         this.language = language;
         this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.pushed_at = pushed_at;
+        this.default_branch = default_branch;
+        this.owner = owner;
         this.watchers = watchers;
         this.size = size;
+        this.forks = forks;
     }
 
     public String getName() {
@@ -52,12 +58,12 @@ public class RepoDetailsModel {
         this.created_at = created_at;
     }
 
-    public String getUpdated_at() {
-        return updated_at;
+    public String getPushed_at() {
+        return pushed_at;
     }
 
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
+    public void setPushed_at(String pushed_at) {
+        this.pushed_at = pushed_at;
     }
 
     public int getWatchers() {
@@ -74,5 +80,21 @@ public class RepoDetailsModel {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public int getForks() {
+        return forks;
+    }
+
+    public String getDefault_branch() {
+        return default_branch;
     }
 }

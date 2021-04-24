@@ -10,14 +10,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nazwa repozytorium"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/short_desc"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         android:layout_below="@+id/repository_name"
         android:text="krótki opis repozytorium"
         android:textSize="17sp"/>
